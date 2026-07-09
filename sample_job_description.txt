@@ -1,0 +1,17 @@
+Role: Senior Full Stack Engineer
+Location: Remote
+Company: FutureTech Industries
+
+We are looking for a Senior Full Stack Engineer to join our core product team. You will be responsible for designing and developing high-performance REST APIs and modern web interfaces.
+
+Requirements:
+- 5+ years of professional software development experience.
+- Deep expertise in Python (FastAPI, Django, or Flask) and JavaScript/TypeScript (React.js).
+- Strong experience with relational databases (PostgreSQL) and database optimization.
+- Solid understanding of Docker containerization and cloud platforms (AWS preferred).
+- Experience setting up automated CI/CD pipelines.
+- Excellent communication and collaboration skills.
+
+Nice to have:
+- Experience with real-time systems or WebSockets.
+- Prior experience with microservices architecture migration.

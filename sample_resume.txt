@@ -1,0 +1,27 @@
+Alex Mercer
+Senior Full Stack Developer
+Email: alex.mercer@email.com | Phone: +1-555-0199 | GitHub: github.com/alexmercer
+
+SUMMARY:
+Highly skilled software engineer with over 5 years of experience designing, building, and deploying scalable web applications. Expert in Python, JavaScript, and cloud architectures. Passionate about writing clean, maintainable code and solving complex performance problems.
+
+SKILLS:
+- Languages: Python, JavaScript, TypeScript, SQL, HTML5, CSS3
+- Frameworks: FastAPI, Flask, Django, React, Express, Node.js
+- Databases: PostgreSQL, MongoDB, Redis
+- Tools & DevOps: Docker, Git, AWS (S3, EC2), CI/CD pipelines, Nginx
+
+EXPERIENCE:
+Lead Developer | TechInnovate Solutions (2023 - Present)
+- Architected and built a real-time analytics dashboard using FastAPI and React, improving page load speeds by 40%.
+- Led a team of 4 engineers to migrate a legacy monolithic Django application into microservices, reducing AWS infrastructure costs by 25%.
+- Implemented robust CI/CD workflows using GitHub Actions and Docker, reducing deployment cycle times by 50%.
+
+Software Engineer | DevCore Systems (2021 - 2023)
+- Developed and maintained critical backend REST APIs in Node.js and Express for an e-commerce platform.
+- Optimized database queries in PostgreSQL, reducing query latency by 30%.
+- Integrated third-party payment gateways (Stripe, PayPal) and notification services (Twilio, SendGrid).
+
+EDUCATION:
+Bachelor of Science in Computer Science
+State University | Graduated 2021
