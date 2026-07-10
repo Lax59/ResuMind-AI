@@ -35,6 +35,10 @@ const listRecommendations = document.getElementById('list-recommendations');
 const keywordsContainer = document.getElementById('keywords-container');
 const skillsGrid = document.getElementById('skills-grid');
 const btnPrint = document.getElementById('btn-print');
+const resultsLoading = document.getElementById('results-loading');
+const loaderStatusTitle = document.getElementById('loader-status-title');
+const loaderStatusDesc = document.getElementById('loader-status-desc');
+const loaderProgress = document.getElementById('loader-progress');
 
 // DOM Elements - Presentation Mode
 const btnPresentation = document.getElementById('btn-presentation');
@@ -238,6 +242,42 @@ analyzeForm.addEventListener('submit', async (e) => {
     btnText.textContent = 'Analyzing...';
     btnSpinner.classList.remove('hidden');
     
+    // Prepare Loader state
+    resultsPlaceholder.classList.add('hidden');
+    resultsContent.classList.add('hidden');
+    resultsLoading.classList.remove('hidden');
+    
+    loaderProgress.style.width = '0%';
+    loaderStatusTitle.textContent = 'Initiating Scanner';
+    loaderStatusDesc.textContent = 'Reading document structure and bytes...';
+    
+    // Animate scanning progress bar dynamically
+    let progressVal = 0;
+    const statusTexts = [
+        { pct: 15, title: "Reading Document Bytes", desc: "Loading layout structure..." },
+        { pct: 30, title: "Extracting Content Layout", desc: "Identifying text blocks, headings, and styling..." },
+        { pct: 48, title: "Identifying Experience Details", desc: "Analyzing timeline descriptions and key roles..." },
+        { pct: 65, title: "Evaluating Skill Sets", desc: "Cross-checking resume terms against target credentials..." },
+        { pct: 80, title: "Running ATS Match Algorithms", desc: "Computing compatibility indexes and search keywords..." },
+        { pct: 93, title: "Structuring Recommendations", desc: "Generating constructive improvement notes..." }
+    ];
+    
+    const progressInterval = setInterval(() => {
+        if (progressVal < 93) {
+            progressVal += Math.floor(Math.random() * 4) + 1; // Increment by 1-4%
+            if (progressVal > 93) progressVal = 93;
+            
+            loaderProgress.style.width = `${progressVal}%`;
+            
+            // Check status texts
+            const textMatch = statusTexts.find(item => progressVal <= item.pct);
+            if (textMatch) {
+                loaderStatusTitle.textContent = textMatch.title;
+                loaderStatusDesc.textContent = textMatch.desc;
+            }
+        }
+    }, 180);
+    
     // Prepare multi-part form data
     const formData = new FormData();
     formData.append('resume', selectedFile);
@@ -259,11 +299,28 @@ analyzeForm.addEventListener('submit', async (e) => {
         }
         
         const result = await response.json();
+        
+        // Finish progress bar
+        clearInterval(progressInterval);
+        loaderProgress.style.width = '100%';
+        loaderStatusTitle.textContent = 'Analysis Complete!';
+        loaderStatusDesc.textContent = 'Formatting visual metrics...';
+        
+        // Wait briefly for progress animation to complete
+        await new Promise(resolve => setTimeout(resolve, 600));
+        
+        // Transition results panel
+        resultsLoading.classList.add('hidden');
+        resultsContent.classList.remove('hidden');
+        
         renderAnalysisReport(result);
         showToast('Resume analyzed successfully!', 'success');
         
     } catch (error) {
         console.error(error);
+        clearInterval(progressInterval);
+        resultsLoading.classList.add('hidden');
+        resultsPlaceholder.classList.remove('hidden');
         showToast(error.message || 'An error occurred during analysis.', 'error');
     } finally {
         // Reset Button state
@@ -277,7 +334,7 @@ analyzeForm.addEventListener('submit', async (e) => {
    5. Render Report to UI
    ========================================================================== */
 function renderAnalysisReport(data) {
-    // 1. Reveal results panel and hide placeholder
+    // 1. Reveal results panel and hide placeholder (fallback validation)
     resultsPlaceholder.classList.add('hidden');
     resultsContent.classList.remove('hidden');
     
@@ -451,7 +508,7 @@ carouselIndicators.forEach(indicator => {
 });
 
 /* ==========================================================================
-   8. Accent Theme Switcher
+   8. Accent Theme Switcher & Day/Night Toggle
    ========================================================================== */
 const themeDots = document.querySelectorAll('.theme-dot');
 themeDots.forEach(dot => {
@@ -462,7 +519,10 @@ themeDots.forEach(dot => {
         dot.classList.add('active');
         
         // Remove old theme classes from body
-        document.body.classList.remove('theme-violet', 'theme-emerald', 'theme-sunset', 'theme-blue');
+        document.body.classList.remove(
+            'theme-violet', 'theme-amber', 'theme-emerald', 
+            'theme-blue', 'theme-lime', 'theme-sakura', 'theme-platinum'
+        );
         
         // Add new theme class
         const theme = dot.getAttribute('data-theme');
@@ -474,13 +534,36 @@ themeDots.forEach(dot => {
     });
 });
 
-// Load saved theme on initial startup
+// Day/Night Theme Mode toggle
+const btnModeToggle = document.getElementById('btn-mode-toggle');
+btnModeToggle.addEventListener('click', () => {
+    const isLight = document.body.classList.toggle('light-theme');
+    
+    if (isLight) {
+        btnModeToggle.textContent = '☀️';
+        localStorage.setItem('mode-theme', 'light');
+    } else {
+        btnModeToggle.textContent = '🌙';
+        localStorage.setItem('mode-theme', 'dark');
+    }
+});
+
+// Load saved preferences on startup
 window.addEventListener('DOMContentLoaded', () => {
+    // 1. Restore Accent color
     const savedTheme = localStorage.getItem('selected-theme');
     if (savedTheme) {
         const dot = document.querySelector(`.theme-dot[data-theme="${savedTheme}"]`);
-        if (dot) {
-            dot.click();
-        }
+        if (dot) dot.click();
+    }
+    
+    // 2. Restore Day/Night mode
+    const savedMode = localStorage.getItem('mode-theme');
+    if (savedMode === 'light') {
+        document.body.classList.add('light-theme');
+        btnModeToggle.textContent = '☀️';
+    } else {
+        document.body.classList.remove('light-theme');
+        btnModeToggle.textContent = '🌙';
     }
 });

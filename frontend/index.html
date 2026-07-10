@@ -33,11 +33,15 @@
             <div class="header-actions">
                 <div class="theme-label"><i class="fa-solid fa-palette"></i> Accent Theme:</div>
                 <div class="theme-picker">
-                    <span class="theme-dot violet active" data-theme="violet" title="Nebula Violet"></span>
-                    <span class="theme-dot emerald" data-theme="emerald" title="Emerald Tech"></span>
-                    <span class="theme-dot sunset" data-theme="sunset" title="Sunset Gold"></span>
-                    <span class="theme-dot blue" data-theme="blue" title="Electric Blue"></span>
+                    <span class="theme-dot theme-violet active" data-theme="violet" title="Nebula Violet"></span>
+                    <span class="theme-dot theme-amber" data-theme="amber" title="Amber Gold"></span>
+                    <span class="theme-dot theme-emerald" data-theme="emerald" title="Emerald Mint"></span>
+                    <span class="theme-dot theme-blue" data-theme="blue" title="Electric Ice"></span>
+                    <span class="theme-dot theme-lime" data-theme="lime" title="Cyber Lime"></span>
+                    <span class="theme-dot theme-sakura" data-theme="sakura" title="Sakura Rose"></span>
+                    <span class="theme-dot theme-platinum" data-theme="platinum" title="Monochrome Platinum"></span>
                 </div>
+                <button id="btn-mode-toggle" class="btn-mode-toggle" title="Toggle Day/Night Mode">🌙</button>
                 <button id="btn-presentation" class="btn btn-secondary" style="display: none;">
                     <i class="fa-solid fa-graduation-cap"></i> Presentation Mode
                 </button>
@@ -104,6 +108,21 @@
                         </div>
                         <h3>Awaiting Analysis</h3>
                         <p>Upload a resume and click analyze to generate your AI feedback report and ATS match score.</p>
+                    </div>
+                </div>
+
+                <!-- Scanning/Loading Screen (hidden by default) -->
+                <div id="results-loading" class="results-loading hidden">
+                    <div class="loader-content">
+                        <div class="loader-scanner">
+                            <div class="scanner-laser"></div>
+                            <i class="fa-solid fa-file-invoice scanner-file-icon"></i>
+                        </div>
+                        <h3 id="loader-status-title">Processing Resume</h3>
+                        <p id="loader-status-desc">Reading document data...</p>
+                        <div class="progress-bar-container">
+                            <div id="loader-progress" class="progress-bar-fill"></div>
+                        </div>
                     </div>
                 </div>
 
@@ -203,8 +222,8 @@
                     <h3><i class="fa-solid fa-envelope"></i> Contact Us</h3>
                     <p>Have questions about the project or implementation details? Reach out to us:</p>
                     <div class="contact-links">
-                        <a href="mailto:team@email.com"><i class="fa-solid fa-envelope-open-text"></i> Email Us</a>
-                        <a href="https://github.com" target="_blank"><i class="fa-brands fa-github"></i> GitHub Repo</a>
+                        <a href="mailto:laxmiverma5533@gmail.com"><i class="fa-solid fa-envelope-open-text"></i> laxmiverma5533@gmail.com</a>
+                        <a href="https://github.com/laxmiverma/ai-resume-analyzer" target="_blank"><i class="fa-brands fa-github"></i> GitHub Repository</a>
                     </div>
                 </div>
             </div>
