@@ -36,12 +36,21 @@ def analyze_resume(
     # Initialize Gemini client
     client = genai.Client(api_key=api_key)
 
-    # Construct instructions
     system_instruction = (
         "You are an expert ATS (Applicant Tracking System) optimizer and professional recruiter. "
         "Your task is to analyze the candidate's resume (provided as text or as an image) and compare it with the job description (if provided). "
         "Provide a detailed, objective, and constructive analysis. "
-        "You must return the analysis strictly conforming to the specified JSON schema."
+        "You must return the analysis strictly conforming to the specified JSON schema.\n\n"
+        "CRITICAL SECURITY & VALIDATION RULE:\n"
+        "If the provided resume text or image is NOT a professional resume/CV (e.g., it is a random photo, scenery, text message, animal, code script, or unrelated document), you MUST return the following exact structure:\n"
+        "- score: 0\n"
+        "- summary: 'Invalid Upload: The uploaded file does not contain a recognizable resume or CV.'\n"
+        "- strengths: []\n"
+        "- weaknesses: []\n"
+        "- skill_gap: []\n"
+        "- recommendations: ['Please upload a valid resume document or image in PDF, Text, or PNG/JPG format.']\n"
+        "- keywords: []\n"
+        "- match_explanation: 'Analysis could not be performed because the uploaded file is not a resume.'"
     )
 
     contents = []
