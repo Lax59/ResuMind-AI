@@ -2,8 +2,10 @@
  * ResuMind AI - Client Application Logic
  */
 
-// Configuration
-const API_BASE_URL = 'https://ai-resume-analyser-yk2g.onrender.com';
+// Configuration (Dynamically switches between local testing and live Render deployment)
+const API_BASE_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+    ? 'http://127.0.0.1:8000'
+    : 'https://ai-resume-analyser-yk2g.onrender.com';
 
 // Global State
 let selectedFile = null;

@@ -1,35 +1,35 @@
 # ResuMind AI — Advanced Resume Analyzer & ATS Optimizer
 
 [![Live Demo](https://img.shields.io/badge/Demo-Live--Link-brightgreen?style=for-the-badge)](https://resumind-ai-app.netlify.app)
-[![API Backend](https://img.shields.io/badge/API-FastAPI-blue?style=for-the-badge)](https://fastapi.tiangolo.com)
+[![API Backend](https://img.shields.io/badge/API-FastAPI-blue?style=for-the-badge)](https://ai-resume-analyser-yk2g.onrender.com)
 [![AI Engine](https://img.shields.io/badge/AI-Gemini%202.5%20Flash-violet?style=for-the-badge)](https://ai.google.dev/)
 
 **ResuMind AI** is an intelligent, full-stack resume analysis application designed to audit resume compatibility against targeted job descriptions. Featuring a highly interactive glassmorphic dashboard interface, the application evaluates resumes across various formats (including document scans and images) to produce structured match scores, skill gap matrices, and ATS keyword optimization insights.
 
 ---
 
-## 🔗 Live Deployed Links
+## 🔗 Deployed URLs
 * **Live Frontend Website (Netlify)**: [https://resumind-ai-app.netlify.app](https://resumind-ai-app.netlify.app)
-* **Live API Backend Server (Render)**: `https://your-api-name.onrender.com` (Add your live Render URL here)
+* **Live API Backend Server (Render)**: [https://ai-resume-analyser-yk2g.onrender.com](https://ai-resume-analyser-yk2g.onrender.com)
 
 ---
 
 ## 📸 Screenshots
 
 ### 1. Home Dashboard Page
-![Home Dashboard Page](screenshots/home_page_mockup.jpg)
+![Home Dashboard Page](screenshots/home_page.png)
 
 ### 2. Multi-Format Upload System
-![File Upload Zone](screenshots/resume_upload_mockup.jpg)
+![File Upload Zone](screenshots/resume_upload.png)
 
 ### 3. ATS Analysis & Match Score Rating
-![Candidate Analysis Summary](screenshots/ats_analysis_dashboard.jpg)
+![Candidate Analysis Summary](screenshots/ats_analysis.png)
 
 ### 4. Interactive Skill Gap Matrix
-![Skill Gap Analysis](screenshots/skill_gap_analysis_chart.jpg)
+![Skill Gap Analysis](screenshots/skill_gap_analysis.png)
 
 ### 5. Multi-Accent Theme Swapper & Day/Night Mode
-![Accent Theme Swapper](screenshots/theme_switcher_demo.jpg)
+![Accent Theme Swapper](screenshots/theme_switcher.png)
 
 ---
 
@@ -52,6 +52,39 @@
 
 ---
 
+## 📂 Project Directory Structure
+
+```
+ai-resume-analyzer/
+│
+├── backend/
+│   ├── main.py            # FastAPI Application Entrypoint (CORS, Endpoint definitions)
+│   ├── parser.py          # PDF document text extractor using `pypdf`
+│   ├── analyzer.py        # Gemini API integration using the `google-genai` SDK
+│   ├── requirements.txt   # Python backend dependencies
+│   ├── test_backend.py    # Environment diagnostic and API key test script
+│   └── .env.example       # Example environment configuration template
+│
+├── frontend/
+│   ├── index.html         # Main dashboard layout (semantic HTML5, Theme pickers)
+│   ├── style.css          # Glassmorphic stylesheet (accent rules, animations, responsive design)
+│   └── app.js             # Client-side routing, API connection, dynamic SVG charts
+│
+├── screenshots/           # Actual application screenshots for documentation
+│   ├── home_page.png
+│   ├── resume_upload.png
+│   ├── ats_analysis.png
+│   ├── skill_gap_analysis.png
+│   └── theme_switcher.png
+│
+├── .gitignore             # Git configuration to block venv and secret files
+├── README.md              # Project documentation (this file)
+├── sample_resume.txt      # Mock resume for quick platform testing
+└── sample_job_description.txt # Mock job description for alignment checks
+```
+
+---
+
 ## 🛠️ Technology Stack
 
 ### Frontend (Client-side)
@@ -71,10 +104,6 @@
 ---
 
 ## ⚙️ Installation & Local Setup
-
-### Prerequisites
-* Python 3.10+ installed.
-* A Gemini API key from Google AI Studio. Get one for free: [Google AI Studio](https://aistudio.google.com/).
 
 ### Setup Step 1: Run the Backend API
 1. Navigate to the backend directory:
