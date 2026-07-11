@@ -557,13 +557,13 @@ window.addEventListener('DOMContentLoaded', () => {
         if (dot) dot.click();
     }
     
-    // 2. Restore Day/Night mode
+    // 2. Restore Day/Night mode (Default is Light Theme)
     const savedMode = localStorage.getItem('mode-theme');
-    if (savedMode === 'light') {
-        document.body.classList.add('light-theme');
-        btnModeToggle.textContent = '☀️';
-    } else {
+    if (savedMode === 'dark') {
         document.body.classList.remove('light-theme');
         btnModeToggle.textContent = '🌙';
+    } else {
+        document.body.classList.add('light-theme');
+        btnModeToggle.textContent = '☀️';
     }
 });

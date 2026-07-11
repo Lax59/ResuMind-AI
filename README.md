@@ -1,123 +1,117 @@
-# ResuMind AI - Resume Analyzer & ATS Optimizer
+# ResuMind AI — Advanced Resume Analyzer & ATS Optimizer
 
-Welcome to **ResuMind AI**, an intelligent, premium, full-stack resume analysis application. The project is designed with a sleek, glassmorphic dark-themed frontend and a robust Python backend powered by **FastAPI** and the **Gemini 2.5 Flash API**. 
+[![Live Demo](https://img.shields.io/badge/Demo-Live--Link-brightgreen?style=for-the-badge)](https://resumind-ai-app.netlify.app)
+[![API Backend](https://img.shields.io/badge/API-FastAPI-blue?style=for-the-badge)](https://fastapi.tiangolo.com)
+[![AI Engine](https://img.shields.io/badge/AI-Gemini%202.5%20Flash-violet?style=for-the-badge)](https://ai.google.dev/)
 
-This project is tailored specifically to look highly professional, compile accurate analysis reports, and provide an interactive **Presentation Mode** containing visual speaking cues to make showcasing the project a breeze for beginners!
-
----
-
-## Project Structure
-
-```
-ai-resume-analyzer/
-├── backend/
-│   ├── main.py            # FastAPI Application Server (CORS, REST API endpoints)
-│   ├── parser.py          # PDF document text extractor using `pypdf`
-│   ├── analyzer.py        # Gemini API integration using the `google-genai` SDK
-│   ├── requirements.txt   # Python backend dependencies
-│   ├── test_backend.py    # Environment diagnostic and API key test script
-│   └── .env.example       # Example environment configuration
-├── frontend/
-│   ├── index.html         # Main dashboard layout (semantic HTML5, Presentation drawer)
-│   ├── style.css          # Premium glassmorphic stylesheet (neon glows, animations)
-│   └── app.js             # Client-side routing, API connection, dynamic SVG charts
-└── README.md              # Project documentation & presentation guide (this file)
-```
+**ResuMind AI** is an intelligent, full-stack resume analysis application designed to audit resume compatibility against targeted job descriptions. Featuring a highly interactive glassmorphic dashboard interface, the application evaluates resumes across various formats (including document scans and images) to produce structured match scores, skill gap matrices, and ATS keyword optimization insights.
 
 ---
 
-## Technical Features
-
-1. **FastAPI Web Framework**: Provides a fast, self-documenting REST API.
-2. **google-genai Python SDK**: Implements state-of-the-art multi-modal parsing and analysis using the latest **Gemini 2.5 Flash** model.
-3. **Structured Response Formatting**: Uses Python Pydantic models to strictly enforce JSON output shapes from the AI, preventing syntax parsing failures on the client side.
-4. **Interactive SVG Dashboard**: Renders a custom-animated radial match percentage gauge.
-5. **Built-in Presentation Guide**: An overlay sidebar designed to guide you step-by-step through slide points and code workflows during your project presentation.
+## 🔗 Live Deployed Links
+* **Live Frontend Website (Netlify)**: [https://resumind-ai-app.netlify.app](https://resumind-ai-app.netlify.app)
+* **Live API Backend Server (Render)**: `https://your-api-name.onrender.com` (Add your live Render URL here)
 
 ---
 
-## Installation & Setup Guide
+## 📸 Screenshots
 
-### Prerequisite
-- Python 3.10+ installed on your computer.
-- A Gemini API key from Google AI Studio. Get one here: [Google AI Studio](https://aistudio.google.com/).
+### 1. Home Dashboard Page
+![Home Dashboard Page](screenshots/home_page_mockup.jpg)
 
-### Step 1: Set Up the Backend
-1. Open your terminal and navigate to the project directory:
+### 2. Multi-Format Upload System
+![File Upload Zone](screenshots/resume_upload_mockup.jpg)
+
+### 3. ATS Analysis & Match Score Rating
+![Candidate Analysis Summary](screenshots/ats_analysis_dashboard.jpg)
+
+### 4. Interactive Skill Gap Matrix
+![Skill Gap Analysis](screenshots/skill_gap_analysis_chart.jpg)
+
+### 5. Multi-Accent Theme Swapper & Day/Night Mode
+![Accent Theme Swapper](screenshots/theme_switcher_demo.jpg)
+
+---
+
+## ⚡ Core Features
+
+1. **Multimodal Resume Parsing**: 
+   * Supports standard PDF and plain text documents.
+   * Leverages Gemini 2.5 Flash's computer vision to process **PNG, JPG, and JPEG screenshots or image scans** of resumes, eliminating the need for complex, heavy local OCR libraries (like Tesseract).
+2. **Dynamic Laser Scanner Animation**:
+   * Engages the user with a futuristic loading animation representing the parsing and analysis phases.
+   * Displays dynamic status indicators (e.g., *"Extracting Content Layout..."*, *"Auditing Skill Sets..."*) with a progress bar before transitioning to the final report.
+3. **Structured Pydantic Data Verification**:
+   * Enforces strict data output shapes using Pydantic Models in Python. This guarantees that the Gemini API returns structured JSON data containing exact keys (`score`, `strengths`, `weaknesses`, `skill_gap`), securing frontend stability.
+4. **Day/Night Theme Toggle**:
+   * Toggles between a dark space-themed glassmorphism style and a clean light mode with a single click. Uses native emojis (🌙 for night and ☀️ for day) and persists settings in the browser's `localStorage`.
+5. **Interactive Color Accent Swapper**:
+   * Features 7 highly distinct, glowing color accent themes (Nebula Violet, Amber Gold, Emerald Mint, Electric Ice, Cyber Lime, Sakura Rose, and Monochrome Platinum) designed to look beautiful in both dark and light modes.
+6. **Click-to-Copy ATS Keywords**:
+   * Generates key optimization keywords to include in the resume. Clicking a keyword chip copies it instantly to the clipboard with an interactive toast notification.
+
+---
+
+## 🛠️ Technology Stack
+
+### Frontend (Client-side)
+* **Markup & Structure**: HTML5 (Semantic elements)
+* **Styling & UI**: Vanilla CSS3 (CSS Grid, Flexbox, Glassmorphism, CSS Custom Variables, Keyframe Animations)
+* **Icons**: FontAwesome v6.4.0
+* **Functionality**: Vanilla JavaScript (Async API fetching, SVG radial path animations, browser preference caching)
+
+### Backend (Server-side)
+* **Language**: Python 3.10+
+* **Web Framework**: FastAPI (High-performance ASGI framework)
+* **ASGI Server**: Uvicorn
+* **PDF Reader**: `pypdf` (Direct in-memory bytes decoding)
+* **AI Model Engine**: Google Gemini 2.5 Flash API via the official `google-genai` SDK
+* **Secrets Management**: `python-dotenv`
+
+---
+
+## ⚙️ Installation & Local Setup
+
+### Prerequisites
+* Python 3.10+ installed.
+* A Gemini API key from Google AI Studio. Get one for free: [Google AI Studio](https://aistudio.google.com/).
+
+### Setup Step 1: Run the Backend API
+1. Navigate to the backend directory:
    ```bash
    cd backend
    ```
-
-2. Create a virtual environment (`venv`) to keep dependencies isolated:
+2. Set up a virtual environment:
    ```bash
    python3 -m venv venv
+   source venv/bin/activate  # On Windows: venv\Scripts\activate
    ```
-
-3. Activate the virtual environment:
-   * **macOS / Linux**:
-     ```bash
-     source venv/bin/activate
-     ```
-   * **Windows**:
-     ```bash
-     venv\Scripts\activate
-     ```
-
-4. Install the backend requirements:
+3. Install dependencies:
    ```bash
    pip install -r requirements.txt
    ```
-
-5. Set up your Gemini API Key:
-   - Duplicate `.env.example` and rename it to `.env`:
+4. Set up environment variables:
+   * Duplicate `.env.example` and rename it to `.env`:
      ```bash
      cp .env.example .env
      ```
-   - Open `.env` in your text editor and add your API key:
+   * Open `.env` and add your key:
      ```env
-     GEMINI_API_KEY=your_actual_api_key_here
+     GEMINI_API_KEY=your_gemini_api_key_here
      ```
+5. Run the server:
+   ```bash
+   uvicorn main:app --reload
+   ```
+   *Interactive Swagger API documentation is available at [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs).*
 
-### Step 2: Diagnostic Check
-Before launching the server, run the diagnostic script to verify your key and packages are configured correctly:
-```bash
-python test_backend.py
-```
-If you see `🎉 Backend environment is ready!`, you're good to go!
-
-### Step 3: Run the Backend
-Launch the FastAPI development server with reload enabled:
-```bash
-uvicorn main:app --reload
-```
-The backend API documentation will be available at: [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs)
-
-### Step 4: Run the Frontend
-Since the frontend uses basic fetch APIs, you can run a simple, lightweight local server.
-1. Open a new terminal tab and navigate to the frontend directory:
+### Setup Step 2: Run the Frontend
+1. Navigate to the frontend directory in a new terminal tab:
    ```bash
    cd frontend
    ```
-2. Start a Python HTTP server:
+2. Launch a simple python development server:
    ```bash
    python3 -m http.server 3000
    ```
-3. Open your browser and go to: [http://localhost:3000](http://localhost:3000)
-
----
-
-## 🎓 Presentation Mode Cheat Sheet
-
-When presenting this project, follow this structured talk track:
-
-1. **Introduction**: 
-   * *"This is ResuMind AI, a full-stack AI-powered resume intelligence application. It compares a candidate's resume against job descriptions to optimize their application for Applicant Tracking Systems (ATS)."*
-2. **Frontend UI**:
-   * Highlight the glassmorphic dark-themed layout, responsive styling, and dynamic SVG dashboard. Demonstrate dragging and dropping a resume.
-3. **Backend & Text Extraction**:
-   * *"When a resume is uploaded, the FastAPI backend parses it. We use the `pypdf` library to process PDF binary bytes directly in memory, converting them into clean string data."*
-4. **AI & Structured JSON**:
-   * *"We send the resume text and job description to the Gemini 2.5 Flash model using Google's official `google-genai` SDK."*
-   * *"To prevent format mismatches, we enforce structured outputs by providing a Pydantic schema. Gemini always returns valid JSON containing a score, key strengths, weaknesses, and a skill gap analysis matching our model."*
-5. **Demonstration**:
-   * Click **Presentation Mode** on the top right to open the interactive panel and show off the integrated live health indicators!
+3. Open your browser and navigate to: [http://localhost:3000](http://localhost:3000)

@@ -1395,7 +1395,7 @@ textarea:focus {
     font-family: var(--font-heading);
     font-size: 15px;
     font-weight: 600;
-    color: #ffffff;
+    color: var(--text-main);
     display: flex;
     align-items: center;
     gap: 8px;
